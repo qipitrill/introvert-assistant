@@ -47,19 +47,26 @@
 </head>
 <body>
 
-    <h2>🛡️ Параметры ИИ-Адвоката</h2>
+ <h2>🛡️ Параметры ИИ-Адвоката</h2>
 
     <div class="form-group">
         <label for="rawText">Что случилось? (Сырой текст):</label>
-        <textarea id="rawText" rows="4" placeholder="Например: скажи шефу что я заболел, но вежливо..."></textarea>
+        <textarea id="rawText" rows="4" placeholder="Например: скажи соседям чтобы убрали свой хлам..."></textarea>
     </div>
 
     <div class="form-group">
         <label for="styleSelect">Выберите стиль ответа:</label>
         <select id="styleSelect">
-            <option value="style_diplomat">💼 Дипломатичный компромисс</option>
-            <option value="style_cold">❄️ Хладнокровный юридический отказ</option>
-            <option value="style_fact">⚡ Короткий жесткий факт</option>
+            <optgroup label="👔 Официальный тон (Обращение на «Вы»)">
+                <option value="style_business" title="Для работы">💼 Деловая этика — Рабочий конструктив (коллеги, клиенты)</option>
+                <option value="style_diplomat" title="Сглаживание углов">🕊️ Дипломат — Мягкий тон (деликатные просьбы, вежливые отказы)</option>
+                <option value="style_boundaries" title="Претензии и разборки">⚖️ Твердые границы — Строгий, холодный тон (претензии, долги)</option>
+            </optgroup>
+            
+            <optgroup label="🤝 Неформальный тон (Обращение на «Ты»)">
+                <option value="style_friendly" title="Для близких">❤️ По-дружески — Теплый, живой тон без канцеляризма (друзья, семья)</option>
+                <option value="style_direct" title="Без лишних слов">⚡ Прямо и четко — Суть дела без прелюдий (когда друг тупит)</option>
+            </optgroup>
         </select>
     </div>
 
