@@ -90,6 +90,13 @@
         const tg = window.Telegram.WebApp;
         tg.expand(); // Расширяем окно на весь экран
 
+        // Подставляем сохранённого адресата если есть
+        const urlParams = new URLSearchParams(window.location.search);
+        const savedTarget = urlParams.get('target');
+        if (savedTarget) {
+            document.getElementById('targetInput').value = savedTarget;
+        }
+
         // Находим кнопку один раз
         const sendBtn = document.getElementById('sendDataBtn');
 
