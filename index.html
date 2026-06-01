@@ -59,6 +59,13 @@
         <label for="rawText">Что случилось? (Сырой текст):</label>
         <textarea id="rawText" rows="4" placeholder="Например: скажи соседям чтобы убрали свой хлам..."></textarea>
     </div>
+    <div class="form-group">
+    <label for="targetInput">Кому отправить (@username или номер):</label>
+    <input type="text" id="targetInput" placeholder="@username или +34..." 
+           style="width:100%; padding:10px; border:1px solid var(--tg-theme-hint-color,#ccc); 
+                  border-radius:8px; background:var(--tg-theme-secondary-bg-color,#f5f5f5); 
+                  color:var(--tg-theme-text-color,#000); box-sizing:border-box; font-size:16px;">
+</div>
 
     <div class="form-group">
         <label for="styleSelect">Выберите стиль ответа:</label>
@@ -92,22 +99,28 @@
             if (sendBtn.disabled) return;
 
             const text = document.getElementById('rawText').value.trim();
+            const target = document.getElementById('targetInput').value.trim();
             const style = document.getElementById('styleSelect').value;
 
             if (!text) {
                 alert('Пожалуйста, введите текст сообщения!');
                 return;
             }
+            if (!target) {
+    alert('Пожалуйста, укажите адресата!');
+    return;
+}
+if (!target.startsWith('@') && !target.startsWith('+')) {
+    alert('Адресат должен начинаться с @ или +');
+    return;
+}
 
             // ВКЛЮЧАЕМ ЗАЩИТУ: Моментально гасим кнопку
             sendBtn.disabled = true;
             sendBtn.innerText = "Формулирую...";
 
             // Упаковываем данные в JSON-строку
-            const dataToSend = {
-                text: text,
-                style: style
-            };
+           const dataToSend = { text: text, style: style, target: target };
 
             // Отправляем данные обратно боту и закрываем окно
             tg.sendData(JSON.stringify(dataToSend));
